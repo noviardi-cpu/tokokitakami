@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="assets/icon-192.png" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#06265e" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="TokoKitaKami" />
+<title>TokoKitaKami — Katalog HP Samsung, OPPO & Infinix</title>
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#eef3fa; --surface:#ffffff; --surface2:#f4f7fc; --ink:#0b1c38; --muted:#51617c;
+    --line:#d7e1f0; --navy:#06265e; --navy2:#0a3a8a; --blue:#0b5ed7; --cyan:#0ea5c6;
+    --green:#1faa55; --green-d:#128c43; --gold:#e8a812; --red:#e02424;
+    --chip:#e7eefb; --shadow:0 4px 16px rgba(6,38,94,.10);
+    --backdrop:#c9d9f2;
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#081426; --surface:#0e1f3d; --surface2:#12284e; --ink:#eef3fc; --muted:#a7b7d2;
+      --line:#223a63; --chip:#17305c; --shadow:0 4px 16px rgba(0,0,0,.35);
+      --backdrop:#02070f;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--backdrop);color:var(--ink);line-height:1.5}
+
+  /* ===== Shell HP 480px (gaya Tri Murtini) ===== */
+  .shell{max-width:480px;margin:0 auto;background:var(--bg);min-height:100dvh;box-shadow:0 0 44px rgba(2,12,30,.35);position:relative;padding-bottom:92px}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* Header sticky: logo + WA + pencarian */
+  .topbar{position:sticky;top:0;z-index:60;background:var(--navy);color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+  .topbar-in{display:flex;align-items:center;gap:10px;padding:10px 14px}
+  .brand{display:flex;align-items:center;gap:9px;text-decoration:none;min-width:0}
+  .brand-mark{width:44px;height:44px;flex:0 0 44px;border-radius:50%;background:#fff;object-fit:cover;border:2px solid #ffd23e;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .foot-logo{width:76px;height:76px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid #ffd23e;margin:0 auto 8px;box-shadow:var(--shadow)}
+  .brand b{font-size:17px;letter-spacing:.2px;white-space:nowrap;line-height:1.1}
+  .brand small{display:block;font-size:10.5px;color:#bcd2f5;font-weight:600}
+  .top-wa{margin-left:auto;background:var(--green);color:#fff;text-decoration:none;font-weight:800;font-size:13px;padding:9px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;min-height:40px}
+  .top-wa:hover{background:var(--green-d)}
+  .top-search{padding:0 14px 10px}
+  .search{display:flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:10px 15px;color:#51617c}
+  .search input{border:0;outline:0;background:transparent;color:#0b1c38;font-size:14.5px;width:100%;font-family:inherit;min-height:24px}
+  .search input::placeholder{color:#8296b3}
+
+  /* Hero ringkas */
+  .hero{background:var(--navy);color:#fff;padding:10px 14px 12px;border-bottom:4px solid var(--cyan)}
+  .hero h1{font-size:21px;line-height:1.18;margin:0 0 6px;font-weight:900}
+  .hero h1 span{color:#5fd3f3}
+  .hero p{margin:0 0 10px;color:#d5e4fb;font-size:13px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:8px}
+  .btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-weight:800;border-radius:999px;padding:11px 16px;font-size:14px;border:0;cursor:pointer;min-height:44px}
+  .btn-wa{background:var(--green);color:#fff}
+  .btn-wa:hover{background:var(--green-d)}
+  .btn-ghost{background:transparent;color:#fff;border:2px solid #7fb0f2}
+  .hero-stats{display:flex;gap:8px;margin-top:10px}
+  .stat{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:7px 10px;min-width:0}
+  .stat b{display:block;font-size:16px;line-height:1.15}
+  .stat span{font-size:10.5px;color:#bcd2f5;font-weight:600}
+
+  /* Kepercayaan */
+  .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px 14px 0}
+  .trust div{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:8px 4px 7px;text-align:center;box-shadow:var(--shadow)}
+  .trust .ic{width:34px;height:34px;margin:0 auto 4px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center}
+  .trust b{display:block;font-size:10.5px;line-height:1.25}
+  .trust span{font-size:9.5px;color:var(--muted)}
+
+  /* Filter */
+  .controls{padding:10px 14px 2px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;padding-bottom:5px}
+  .chip{flex:0 0 auto;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;min-height:38px}
+  .chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .chip-sub.on{background:var(--cyan);border-color:var(--cyan);color:#fff}
+  .count-line{font-size:12.5px;color:var(--muted);margin:6px 2px 0;font-weight:600}
+
+  /* Kartu produk */
+  section.brand-sec{padding:18px 14px 2px}
+  .sec-head h2{font-size:20px;margin:0;font-weight:900}
+  .sec-head p{margin:2px 0 0;color:var(--muted);font-size:12.5px}
+  .promo{background:#fff7e0;border:1.5px solid var(--gold);color:#5c4300;border-radius:var(--radius);padding:11px 13px;font-size:12.5px;margin:12px 0 2px}
+  @media (prefers-color-scheme: dark){ .promo{background:#2c2307;color:#f3d98b} }
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px;position:relative;min-width:0}
+  .ph{border-radius:10px;background:#fff;overflow:hidden}
+  .ph img{width:100%;height:138px;object-fit:contain;padding:6px}
+  .card .tags{display:flex;gap:5px;flex-wrap:wrap}
+  .tag{font-size:9.5px;font-weight:900;letter-spacing:.4px;padding:3px 8px;border-radius:999px;background:var(--chip);color:var(--navy2)}
+  @media (prefers-color-scheme: dark){ .tag{color:#9fc2ff} }
+  .tag.new{background:var(--red);color:#fff}
+  .tag.cash{background:#fde8e8;color:#b91c1c;border:1px solid #f5b5b5}
+  .tag.promo-t{background:#fff1c2;color:#7a5200;border:1px solid var(--gold)}
+  .card h3{margin:0;font-size:14.5px;line-height:1.25}
+  .variant{font-size:11.5px;font-weight:800;color:var(--cyan);background:var(--surface2);border:1px dashed var(--line);border-radius:8px;padding:4px 8px;width:fit-content}
+  .specs{margin:0;padding-left:15px;font-size:11.3px;color:var(--muted)}
+  .specs li{margin:1px 0}
+  .was{font-size:11.5px;color:var(--muted);text-decoration:line-through}
+  .price{margin-top:auto;font-size:16.5px;font-weight:900;color:var(--navy2)}
+  @media (prefers-color-scheme: dark){ .price{color:#7db4ff} }
+  .price small{font-size:10.5px;color:var(--muted);font-weight:700;display:block}
+  .order{margin-top:2px;background:var(--green);color:#fff;text-align:center;text-decoration:none;font-weight:800;font-size:13.5px;padding:12px 6px;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:6px;min-height:48px}
+  .order:hover{background:var(--green-d)}
+  .empty{display:none;text-align:center;padding:30px 16px;color:var(--muted);font-weight:600;font-size:14px}
+
+  /* Katalog asli */
+  .katalog{padding:26px 14px 4px}
+  .katalog h2{font-size:20px;margin:0 0 4px;font-weight:900}
+  .katalog p{color:var(--muted);margin:0 0 12px;font-size:13px}
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .shot{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface);box-shadow:var(--shadow);padding:0;cursor:zoom-in;text-align:left;font-family:inherit;color:var(--ink)}
+  .shot img{width:100%;height:190px;object-fit:cover;object-position:top}
+  .shot span{display:block;padding:9px 11px 0;font-weight:800;font-size:12.5px}
+  .shot small{display:block;padding:0 11px 10px;color:var(--muted);font-weight:600;font-size:11px}
+
+  /* Cara order */
+  .steps-sec{padding:24px 14px 4px}
+  .steps-sec h2{font-size:20px;margin:0;font-weight:900}
+  .steps{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);display:flex;gap:12px}
+  .step .n{width:32px;height:32px;flex:0 0 32px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center}
+  .step b{display:block;font-size:14.5px;margin-bottom:2px}
+  .step p{margin:0;font-size:12.8px;color:var(--muted)}
+
+  /* Catatan foto */
+  .fotonote{margin:22px 14px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px;font-size:12.3px;color:var(--muted);box-shadow:var(--shadow)}
+  .fotonote b{color:var(--ink);font-size:13px}
+
+  footer{color:var(--muted);padding:24px 14px 8px;text-align:center}
+  footer b{color:var(--ink);font-size:16px}
+  footer p{margin:5px 0;font-size:12.5px}
+  footer a{color:var(--blue);font-weight:700}
+
+  /* Tombol WA mengambang (di dalam lebar shell) */
+  .float-wrap{position:fixed;bottom:calc(74px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:100%;max-width:480px;pointer-events:none;z-index:65;display:flex;justify-content:flex-end;padding-right:14px}
+  .float-wa{pointer-events:auto;background:var(--green);color:#fff;text-decoration:none;font-weight:900;font-size:14px;padding:13px 18px;border-radius:999px;box-shadow:0 10px 26px rgba(0,0,0,.3);display:inline-flex;gap:7px;align-items:center;min-height:48px}
+  .float-wa:hover{background:var(--green-d)}
+
+  /* Bottom navigation */
+  .botnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -4px 18px rgba(2,12,30,.12);display:grid;grid-template-columns:repeat(4,1fr);z-index:70;padding-bottom:env(safe-area-inset-bottom)}
+  .botnav a,.botnav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 2px 7px;font-size:10.5px;font-weight:700;color:var(--muted);text-decoration:none;background:none;border:0;font-family:inherit;cursor:pointer;min-height:56px}
+  .botnav a.on,.botnav button.on{color:var(--navy2)}
+  @media (prefers-color-scheme: dark){ .botnav a.on,.botnav button.on{color:#7db4ff} }
+  .botnav .wa-nav{color:var(--green-d)}
+  @media (prefers-color-scheme: dark){ .botnav .wa-nav{color:#4ade80} }
+
+  dialog#lightbox{border:0;padding:0;background:transparent;max-width:96vw;max-height:94vh}
+  dialog#lightbox::backdrop{background:rgba(2,12,30,.88)}
+  dialog#lightbox img{max-width:96vw;max-height:88vh;border-radius:10px;margin:0 auto}
+  dialog#lightbox button{display:block;margin:10px auto 0;background:#fff;color:#111;border:0;border-radius:999px;padding:9px 22px;font-weight:800;cursor:pointer;font-family:inherit;min-height:44px}
+
+  @media (max-width:360px){
+    .grid{grid-template-columns:1fr}
+    .trust{grid-template-columns:repeat(2,1fr)}
+    .brand small{display:none}
+  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+</style>
+</head>
+<body>
+<div class="shell" id="atas">
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#atas">
+      <img class="brand-mark" src="assets/icon-512.png" alt="Logo TokoKitaKami — monyet lucu memakai kacamata hitam" width="44" height="44" />
+      <span><b>TokoKitaKami</b><small>Katalog HP &amp; Gadget Original</small></span>
+    </a>
+    <a class="top-wa" href="https://wa.me/6287822891011?text=Halo%20TokoKitaKami%2C%20saya%20mau%20tanya%20produk" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2z"/></svg>
+      0878-2289-1011
+    </a>
+  </div>
+  <div class="top-search">
+    <label class="search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Cari produk… contoh: A07, Reno16, Note 60, Buds" autocomplete="off" />
+    </label>
+  </div>
+</header>
+
+<div class="hero">
+  <h1>HP Baru, Harga Jelas,<br /><span>Langsung dari Katalog Toko</span></h1>
+  <p>Semua produk dan harga di halaman ini sama persis dengan gambar katalog yang beredar — Samsung Galaxy, OPPO, dan Infinix, lengkap dengan foto produk aslinya. Tinggal pilih, klik tombolnya, order lewat WhatsApp.</p>
+  <div class="hero-cta">
+    <a class="btn btn-wa" href="https://wa.me/6287822891011?text=Halo%20TokoKitaKami%2C%20saya%20mau%20tanya%20produk" target="_blank" rel="noopener">💬 Chat WhatsApp</a>
+    <a class="btn btn-ghost" href="#katalog">Lihat Katalog ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><b>65</b><span>Varian produk</span></div>
+    <div class="stat"><b>3 Brand</b><span>Samsung · OPPO · Infinix</span></div>
+    <div class="stat"><b>Rp 699 rb</b><span>Mulai dari — Enco Air5 promo</span></div>
+  </div>
+</div>
+
+<div class="trust" aria-label="Kepercayaan">
+  <div>
+    <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.6 8-10V5l-8-3-8 3v7c0 6.4 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+    <b>PRODUK ORIGINAL</b><span>100% Original</span>
+  </div>
+  <div>
+    <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-2 8 5.5-3 5.5 3-2-8"/><path d="m9.5 9 2 2 3.5-3.5"/></svg></span>
+    <b>GARANSI RESMI</b><span>Aman &amp; Terpercaya</span>
+  </div>
+  <div>
+    <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h13v9H1zM14 11h4l3 3v3h-7z"/><circle cx="6" cy="19" r="1.8"/><circle cx="17.5" cy="19" r="1.8"/></svg></span>
+    <b>PENGIRIMAN CEPAT</b><span>Seluruh Indonesia</span>
+  </div>
+  <div>
+    <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2" y="13" width="4" height="7" rx="2"/><rect x="18" y="13" width="4" height="7" rx="2"/><path d="M20 20a4 4 0 0 1-4 2h-2"/></svg></span>
+    <b>LAYANAN PROFESIONAL</b><span>Siap Membantu</span>
+  </div>
+</div>
+
+<div id="katalog">
+  <div class="controls">
+    <div class="chips" id="brandChips" role="group" aria-label="Filter brand">
+      <button class="chip on" data-brand="semua">Semua Brand</button>
+      <button class="chip" data-brand="samsung">Samsung</button>
+      <button class="chip" data-brand="oppo">OPPO</button>
+      <button class="chip" data-brand="infinix">Infinix</button>
+    </div>
+    <div class="chips" id="catChips" role="group" aria-label="Filter kategori">
+      <button class="chip chip-sub on" data-cat="semua">Semua</button>
+      <button class="chip chip-sub" data-cat="hp">HP</button>
+      <button class="chip chip-sub" data-cat="tablet">Tablet</button>
+      <button class="chip chip-sub" data-cat="audio">Audio / Buds</button>
+      <button class="chip chip-sub" data-cat="wearable">Jam / Wearable</button>
+      <button class="chip chip-sub" data-cat="aksesoris">Aksesoris</button>
+    </div>
+    <p class="count-line" id="countLine"></p>
+  </div>
+
+  <main id="catalog"></main>
+  <div class="empty" id="empty">Tidak ada produk yang cocok. Coba kata kunci atau filter lain — atau tanya langsung lewat WhatsApp.</div>
+</div>
+
+<section class="katalog" id="katalog-asli">
+  <h2>Gambar Katalog Asli</h2>
+  <p>Ini foto katalog persis seperti yang dibagikan toko — ketuk untuk memperbesar dan cek sendiri harganya.</p>
+  <div class="shots">
+    <button class="shot" data-full="assets/katalog-samsung-a.jpg">
+      <img src="assets/katalog-samsung-a.jpg" alt="Katalog Samsung Galaxy A Series — daftar tipe, RAM, storage, dan harga" loading="lazy" />
+      <span>Samsung Galaxy A Series</span><small>20 varian · Rp 2.199.000 – 9.999.000</small>
+    </button>
+    <button class="shot" data-full="assets/katalog-samsung-tab.jpg">
+      <img src="assets/katalog-samsung-tab.jpg" alt="Katalog Samsung Galaxy Tab, Buds, dan Watch — daftar tipe dan harga" loading="lazy" />
+      <span>Samsung Tab · Buds · Watch</span><small>8 produk · Rp 2.999.000 – 27.999.000</small>
+    </button>
+    <button class="shot" data-full="assets/katalog-oppo.jpg">
+      <img src="assets/katalog-oppo.jpg" alt="Katalog OPPO — A7 Pro, Reno16, Find X9, Enco, Watch X3, dan A6 series beserta harga" loading="lazy" />
+      <span>OPPO — HP, Enco &amp; Watch</span><small>23 varian · promo hingga 31 Okt 2026</small>
+    </button>
+    <button class="shot" data-full="assets/katalog-infinix.jpg">
+      <img src="assets/katalog-infinix.jpg" alt="Katalog Infinix — Note 60 series, GT 50 Pro, Hot 70, dan Smart 20 beserta harga" loading="lazy" />
+      <span>Infinix — Note, GT, Hot, Smart</span><small>14 varian · Rp 1.999.000 – 11.999.000</small>
+    </button>
+  </div>
+</section>
+
+<section class="steps-sec">
+  <h2>Cara Order</h2>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><div><b>Pilih produknya</b><p>Cari di katalog di atas — harga dan varian RAM/storage sudah tertulis jelas, sama seperti di gambar katalog.</p></div></div>
+    <div class="step"><span class="n">2</span><div><b>Klik “Pesan via WhatsApp”</b><p>Pesan otomatis terisi nama produk, varian, dan harganya. Tinggal kirim ke 0878-2289-1011.</p></div></div>
+    <div class="step"><span class="n">3</span><div><b>Admin konfirmasi</b><p>Admin membalas untuk konfirmasi stok, pembayaran, dan pengiriman ke alamat kamu.</p></div></div>
+  </div>
+</section>
+
+<div class="fotonote">
+  <b>Tentang foto produk — jujur soal sumbernya</b><br />
+  Setiap kartu sekarang ada foto produk aslinya, sesuai modelnya. Tapi sumbernya tidak semuanya dari situs resmi merek, dan ini kami tulis apa adanya:<br /><br />
+  <b>Diambil langsung dari situs/CDN resmi merek:</b> Galaxy A08, Galaxy Tab S12+, Galaxy Buds4 (samsung.com) · OPPO A6s, OPPO Enco Air5s, OPPO Enco Air5, OPPO Bubble Mag E-Badge (oppo.com / CDN resmi OPPO).<br /><br />
+  <b>Fotonya belum dari situs resmi</b> (render produk asli yang sama, diambil dari galeri pers &amp; toko pihak ketiga karena belum ketemu di situs resmi merek): Galaxy A07, Galaxy A07 5G, Galaxy A17, Galaxy A17 5G, Galaxy A18, Galaxy A27 5G, Galaxy A37 5G, Galaxy A57 5G, Galaxy Tab S12 Ultra, Galaxy Buds4 Pro, Galaxy Watch9 · OPPO A7 Pro Max 5G, OPPO A7 Pro 5G, Reno16 Pro 5G, Reno16 5G, Reno16 F 5G, Find X9 Ultra, Find X9s, OPPO A6, OPPO Enco Clip2, OPPO Watch X3 · semua model Infinix (Note 60 Ultra, Note 60 Pro, Note 60, Note Edge, GT 50 Pro, Hot 70, Smart 20).<br /><br />
+  Varian RAM/storage dan ukuran (mis. Watch9 40mm &amp; 44mm, Tab S12 Ultra WiFi) memakai foto model yang sama.
+</div>
+
+<footer>
+  <img class="foot-logo" src="assets/logo.png" alt="Logo TokoKitaKami — TKK, monyet lucu memakai kacamata hitam" width="76" height="76" loading="lazy" />
+  <b>TokoKitaKami</b>
+  <p>Katalog HP &amp; gadget — Samsung Galaxy, OPPO, Infinix. Produk original, garansi resmi, pengiriman ke seluruh Indonesia.</p>
+  <p>WhatsApp: <a href="https://wa.me/6287822891011" target="_blank" rel="noopener">0878-2289-1011</a></p>
+  <p style="opacity:.75">Harga mengikuti gambar katalog toko. Stok dan promo dapat berubah — konfirmasi dulu lewat WhatsApp sebelum order.</p>
+</footer>
+
+</div><!-- /shell -->
+
+<div class="float-wrap">
+  <a class="float-wa" href="https://wa.me/6287822891011?text=Halo%20TokoKitaKami%2C%20saya%20mau%20tanya%20produk" target="_blank" rel="noopener">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2z"/></svg>
+    Chat / Order
+  </a>
+</div>
+
+<nav class="botnav" aria-label="Navigasi bawah">
+  <a href="#atas" class="on">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+    Beranda
+  </a>
+  <a href="#katalog">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+    Kategori
+  </a>
+  <button type="button" id="navSearch">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    Cari
+  </button>
+  <a class="wa-nav" href="https://wa.me/6287822891011?text=Halo%20TokoKitaKami%2C%20saya%20mau%20tanya%20produk" target="_blank" rel="noopener">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2z"/></svg>
+    Chat WA
+  </a>
+</nav>
+
+<dialog id="lightbox">
+  <img id="lightboxImg" src="assets/katalog-samsung-a.jpg" alt="Gambar katalog diperbesar" />
+  <button id="lightboxClose" type="button">Tutup ✕</button>
+</dialog>
+
+<script>
+var WA = "6287822891011";
+
+/* Data transcribed 1:1 from the 4 catalog images the owner shared. price in IDR. */
+var PRODUCTS = [
+  /* ===== SAMSUNG GALAXY A SERIES ===== */
+  {brand:"samsung", cat:"hp", name:"Galaxy A07", variant:"4GB / 128GB", price:2899000, img:"a07"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A07", variant:"4GB / 64GB", price:2199000, img:"a07"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A07 5G", variant:"6GB / 128GB", price:3199000, img:"a07-5g"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A07", variant:"6GB / 128GB", price:3299000, img:"a07"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A07", variant:"8GB / 256GB", price:3699000, img:"a07"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A08", variant:"4GB / 128GB", price:3599000, badge:"NEW", img:"a08"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A08", variant:"4GB / 64GB", price:2999000, badge:"NEW", img:"a08"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A17", variant:"4GB / 128GB", price:3599000, img:"a17"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A17 5G", variant:"8GB / 256GB", price:5299000, img:"a17-5g"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A17", variant:"8GB / 128GB", price:4599000, img:"a17"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A17", variant:"8GB / 256GB", price:4999000, img:"a17"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A18", variant:"4GB / 128GB", price:4299000, badge:"NEW", img:"a18"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A18", variant:"8GB / 128GB", price:5299000, badge:"NEW", img:"a18"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A27 5G", variant:"6GB / 128GB", price:5599000, img:"a27"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A27 5G", variant:"8GB / 256GB", price:6999000, img:"a27"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A37 5G", variant:"8GB / 128GB", price:6599000, img:"a37"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A37 5G", variant:"8GB / 256GB", price:7299000, img:"a37"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A57 5G", variant:"12GB / 256GB", price:9999000, img:"a57"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A57 5G", variant:"8GB / 128GB", price:7599000, img:"a57"},
+  {brand:"samsung", cat:"hp", name:"Galaxy A57 5G", variant:"8GB / 256GB", price:8999000, img:"a57"},
+  /* ===== SAMSUNG TAB / BUDS / WATCH ===== */
+  {brand:"samsung", cat:"tablet", name:"Galaxy Tab S12 Ultra", variant:"12GB / 256GB", price:27999000, img:"tab-s12-ultra"},
+  {brand:"samsung", cat:"tablet", name:"Galaxy Tab S12 Ultra WiFi", variant:"12GB / 256GB", price:25499000, img:"tab-s12-ultra"},
+  {brand:"samsung", cat:"tablet", name:"Galaxy Tab S12+", variant:"12GB / 256GB", price:23499000, img:"tab-s12-plus"},
+  {brand:"samsung", cat:"tablet", name:"Galaxy Tab S12+ WiFi", variant:"12GB / 256GB", price:21999000, img:"tab-s12-plus"},
+  {brand:"samsung", cat:"audio", name:"Galaxy Buds4", variant:"", price:2999000, img:"buds4"},
+  {brand:"samsung", cat:"audio", name:"Galaxy Buds4 Pro", variant:"", price:3999000, img:"buds4-pro"},
+  {brand:"samsung", cat:"wearable", name:"Galaxy Watch9", variant:"44mm", price:6499000, img:"watch9"},
+  {brand:"samsung", cat:"wearable", name:"Galaxy Watch9", variant:"40mm", price:5999000, img:"watch9"},
+  /* ===== OPPO ===== */
+  {brand:"oppo", cat:"hp", name:"OPPO A7 Pro Max 5G", variant:"8GB + 128GB", price:9999000, badge:"NEW", img:"a7-pro-max", specs:["50MP Kamera Ultra-Wide, AI Zoom Kamera Selfie","Baterai besar 10000mAh, tahan sampai 6 tahun","Layar 1.5K AMOLED ultra cerah","Anti Lag 6 tahun · ColorOS 16"]},
+  {brand:"oppo", cat:"hp", name:"OPPO A7 Pro Max 5G", variant:"8GB + 256GB", price:10999000, badge:"NEW", img:"a7-pro-max", specs:["50MP Kamera Ultra-Wide, AI Zoom Kamera Selfie","Baterai besar 10000mAh, tahan sampai 6 tahun","Layar 1.5K AMOLED ultra cerah","Anti Lag 6 tahun · ColorOS 16"]},
+  {brand:"oppo", cat:"hp", name:"OPPO A7 Pro 5G", variant:"8GB + 128GB", price:7499000, badge:"NEW", img:"a7-pro", specs:["50MP Kamera Ultra-Wide, AI Zoom Kamera Selfie","Baterai besar 8000mAh, tahan sampai 6 tahun","Layar 120Hz AMOLED ultra cerah","Anti Lag 5 tahun · ColorOS 16"]},
+  {brand:"oppo", cat:"hp", name:"OPPO A7 Pro 5G", variant:"8GB + 256GB", price:7999000, badge:"NEW", img:"a7-pro", specs:["50MP Kamera Ultra-Wide, AI Zoom Kamera Selfie","Baterai besar 8000mAh, tahan sampai 6 tahun","Layar 120Hz AMOLED ultra cerah","Anti Lag 5 tahun · ColorOS 16"]},
+  {brand:"oppo", cat:"hp", name:"Reno16 Pro 5G", variant:"12GB + 256GB", price:14999000, img:"reno16-pro", specs:["Desain Planet 3D · AI Kolase Mix","Kamera Selfie 50MP Ultra-Wide","Kamera Utama 200MP Ultra Jernih"]},
+  {brand:"oppo", cat:"hp", name:"Reno16 5G", variant:"8GB + 256GB", price:11999000, img:"reno16", specs:["Desain Planet 3D · AI Kolase Mix","Kamera Selfie 50MP Ultra-Wide","Video 4K Ultra Stabil"]},
+  {brand:"oppo", cat:"hp", name:"Reno16 5G", variant:"12GB + 256GB", price:12999000, img:"reno16", specs:["Desain Planet 3D · AI Kolase Mix","Kamera Selfie 50MP Ultra-Wide","Video 4K Ultra Stabil"]},
+  {brand:"oppo", cat:"hp", name:"Reno16 F 5G", variant:"8GB + 128GB", price:7999000, img:"reno16-f", specs:["Desain Planet 3D · AI Kolase Mix","Kamera Selfie 50MP Ultra-Wide","Tahan debu & percikan air IP69K"]},
+  {brand:"oppo", cat:"hp", name:"Reno16 F 5G", variant:"8GB + 256GB", price:8699000, img:"reno16-f", specs:["Desain Planet 3D · AI Kolase Mix","Kamera Selfie 50MP Ultra-Wide","Tahan debu & percikan air IP69K"]},
+  {brand:"oppo", cat:"hp", name:"Find X9 Ultra", variant:"12GB + 512GB", price:25999000, badge:"CASHBACK", img:"find-x9-ultra", specs:["Hasselblad 50MP 10x Optik Telefoto","Kamera Ganda 200MP Hasselblad","Video 8K Ultra Jernih","Baterai besar 7050mAh"]},
+  {brand:"oppo", cat:"hp", name:"Find X9 Ultra", variant:"16GB + 1TB", price:31999000, badge:"CASHBACK", img:"find-x9-ultra", specs:["Hasselblad 50MP 10x Optik Telefoto","Kamera Ganda 200MP Hasselblad","Video 8K Ultra Jernih","Baterai besar 7050mAh"]},
+  {brand:"oppo", cat:"hp", name:"Find X9s", variant:"12GB + 256GB", price:15499000, badge:"CASHBACK", img:"find-x9s", specs:["50MP Tiga Kamera Ultra Jernih","Perekaman Dolby Vision 4K 60 fps","Baterai ultra besar 7025mAh","MediaTek Dimensity 9500s"]},
+  {brand:"oppo", cat:"hp", name:"Find X9s", variant:"12GB + 512GB", price:17499000, badge:"CASHBACK", img:"find-x9s", specs:["50MP Tiga Kamera Ultra Jernih","Perekaman Dolby Vision 4K 60 fps","Baterai ultra besar 7025mAh","MediaTek Dimensity 9500s"]},
+  {brand:"oppo", cat:"hp", name:"OPPO A6s", variant:"8GB + 128GB", price:4799000, badge:"CASHBACK", img:"a6s", specs:["Fotografi dalam air IP69","Baterai 7000mAh tahan seharian","80W SUPERVOOC","Performa Anti Lag hingga 5 tahun"]},
+  {brand:"oppo", cat:"hp", name:"OPPO A6s", variant:"8GB + 256GB", price:5299000, badge:"CASHBACK", img:"a6s", specs:["Fotografi dalam air IP69","Baterai 7000mAh tahan seharian","80W SUPERVOOC","Performa Anti Lag hingga 5 tahun"]},
+  {brand:"oppo", cat:"hp", name:"OPPO A6 (NFC)", variant:"128GB", price:4299000, img:"a6", specs:["Baterai besar 7000mAh + 45W SUPERVOOC","Layar responsif cepat 120Hz","Prosesor Snapdragon 685","Tahan air dan debu IP69"]},
+  {brand:"oppo", cat:"hp", name:"OPPO A6 (NFC)", variant:"256GB", price:4799000, img:"a6", specs:["Baterai besar 7000mAh + 45W SUPERVOOC","Layar responsif cepat 120Hz","Prosesor Snapdragon 685","Tahan air dan debu IP69"]},
+  {brand:"oppo", cat:"audio", name:"OPPO Enco Air5s", variant:"", price:899000, was:1299000, badge:"PROMO PWP", img:"enco-air5s", specs:["Adaptive Noise Cancellation tanpa jeda","Driver bertenaga 12mm CCAW","Peredam suara percakapan canggih","Pas dan ringan 3,9 gram"]},
+  {brand:"oppo", cat:"audio", name:"OPPO Enco Air5", variant:"", price:699000, was:899000, badge:"PROMO PWP", img:"enco-air5", specs:["52dB peredam suara adaptif","Bass Driver Dinamis 12mm","Baterai tahan lama 2+ hari","Panggilan jernih dengan AI & 3 Mic"]},
+  {brand:"oppo", cat:"audio", name:"OPPO Enco Clip2 Open Earbuds", variant:"", price:2299000, badge:"CASHBACK", img:"enco-clip2", specs:["Desain Likuid Metal futuristik","Kenyamanan Ear Hug Fit","Audio Dual-Driver kelas flagship"]},
+  {brand:"oppo", cat:"wearable", name:"OPPO Watch X3", variant:"Obsidian Black", price:6499000, img:"watch-x3", specs:["Casing Titanium ultra ringan","Pemantauan kesehatan Tri-Sense","Baterai hingga 16 hari, sistem Dual Chip"]},
+  {brand:"oppo", cat:"wearable", name:"OPPO Watch X3", variant:"Misty Titanium", price:6999000, img:"watch-x3", specs:["Casing Titanium ultra ringan","Pemantauan kesehatan Tri-Sense","Baterai hingga 16 hari, sistem Dual Chip"]},
+  {brand:"oppo", cat:"aksesoris", name:"OPPO Bubble Mag E-Badge", variant:"", price:1199000, was:1499000, badge:"CASHBACK", img:"bubble-mag", specs:["Preview Selfie sempurna","Badge ekspresi gayamu"]},
+  /* ===== INFINIX ===== */
+  {brand:"infinix", cat:"hp", name:"Infinix Note 60 Ultra 5G", variant:"12GB + 512GB", price:11999000, img:"note-60-ultra", specs:["Kamera 200MP Ultra Resolution","Modul kamera Uni-Chassis pertama di dunia","100X Zoom Periscope","Desain by Pininfarina"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Note 60 Pro 5G", variant:"8GB + 256GB", price:5999000, img:"note-60-pro", specs:["Snapdragon 7s Gen 4 5G","Layar AMOLED 6.78 inci 144Hz · 6500mAh","90W + 30W Wireless Charging","Kamera 50MP OIS UltraWide · Video 4K HDR"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Note 60 Pro 5G", variant:"12GB + 256GB", price:6999000, img:"note-60-pro", specs:["Snapdragon 7s Gen 4 5G","Layar AMOLED 6.78 inci 144Hz · 6500mAh","90W + 30W Wireless Charging","Kamera 50MP OIS UltraWide · Video 4K HDR"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Note 60 5G", variant:"8GB + 256GB", price:4999000, img:"note-60", specs:["MediaTek Dimensity 7020 Ultimate 5G","Layar AMOLED 6.74 inci 144Hz · Wireless Charge","5160mAh · 45W All-Round Charge","Kamera 50MP OIS UltraWide · Video 4K HDR"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Note Edge 5G+", variant:"8GB + 128GB", price:4099000, img:"note-edge", specs:["Layar 1.5K Ultra-Clear · Corning Glass","5500mAh · 18W + 33W Fast Charge","MediaTek Dimensity 7300 Ultimate 5G","Dual Speaker by JBL"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Note Edge 5G+", variant:"8GB + 256GB", price:4399000, img:"note-edge", specs:["Layar 1.5K Ultra-Clear · Corning Glass","5500mAh · 18W + 33W Fast Charge","MediaTek Dimensity 7300 Ultimate 5G","Dual Speaker by JBL"]},
+  {brand:"infinix", cat:"hp", name:"Infinix GT 50 Pro 5G", variant:"12GB + 256GB", price:6999000, img:"gt-50-pro", specs:["Official Gaming Phone","HydroFlow Liquid Cooling","144FPS Gaming Ecosystem","Pressure-Sense GT Trigger"]},
+  {brand:"infinix", cat:"hp", name:"Infinix GT 50 Pro 5G", variant:"12GB + 512GB", price:7999000, img:"gt-50-pro", specs:["Official Gaming Phone","HydroFlow Liquid Cooling","144FPS Gaming Ecosystem","Pressure-Sense GT Trigger"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Hot 70", variant:"4GB + 128GB", price:2799000, img:"hot-70", specs:["Layar 120Hz 6.78 inci","Helio G100 Ultimate","Baterai 5200mAh Ultra Slim"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Hot 70", variant:"6GB + 128GB", price:3199000, img:"hot-70", specs:["Layar 120Hz 6.78 inci","Helio G100 Ultimate","Baterai 5200mAh Ultra Slim"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Hot 70", variant:"8GB + 128GB", price:3399000, img:"hot-70", specs:["Layar 120Hz 6.78 inci","Helio G100 Ultimate","Baterai 5200mAh Ultra Slim"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Hot 70", variant:"6GB + 256GB", price:3599000, img:"hot-70", specs:["Layar 120Hz 6.78 inci","Helio G100 Ultimate","Baterai 5200mAh Ultra Slim"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Smart 20", variant:"4GB + 64GB", price:1999000, img:"smart-20", specs:["Layar 120Hz 6.78 inci","Helio G81 · Pure Voice Calls","Baterai 5200mAh Ultra Slim"]},
+  {brand:"infinix", cat:"hp", name:"Infinix Smart 20", variant:"4GB + 128GB", price:2199000, img:"smart-20", specs:["Layar 120Hz 6.78 inci","Helio G81 · Pure Voice Calls","Baterai 5200mAh Ultra Slim"]}
+];
+
+/* Foto resmi per model: file di assets/produk-<kunci>.jpg|png */
+var IMGEXT = {a6s:"png", "enco-air5s":"png", "enco-air5":"png", "smart-20":"png"};
+
+var SECTIONS = [
+  {brand:"samsung", title:"Samsung Galaxy", sub:"A Series, Tab S12, Buds4 & Watch9 — produk original, garansi resmi Samsung."},
+  {brand:"oppo", title:"OPPO", sub:"A7 Pro, Reno16, Find X9, Enco & Watch X3 — banyak promo cashback & PWP.",
+   promo:"<b>Promo OPPO di katalog:</b> total benefit s.d. <b>Rp3,1 juta</b> — upgrade memori 2x (128GB → 256GB), cashback trade-in eSwop hingga Rp1,4 juta, cicilan 0%, dan gratis asuransi kesehatan baterai. Berlaku hingga <b>31 Okt 2026</b> sesuai gambar katalog."},
+  {brand:"infinix", title:"Infinix", sub:"Note 60 Series, GT 50 Pro, Hot 70 & Smart 20 — garansi resmi Infinix Indonesia 15 bulan, layanan Carlcare."}
+];
+var CATLABEL = {hp:"HP", tablet:"Tablet", audio:"Audio", wearable:"Wearable", aksesoris:"Aksesoris"};
+var BRANDLABEL = {samsung:"SAMSUNG", oppo:"OPPO", infinix:"INFINIX"};
+
+function rp(n){ return "Rp " + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+function waLink(p){
+  var msg = "Halo TokoKitaKami, saya mau pesan:\n\n" + p.name + (p.variant ? " (" + p.variant + ")" : "") + "\nHarga katalog: " + rp(p.price) + "\n\nMasih ready? Terima kasih.";
+  return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
+}
+function badgeHtml(b){
+  if(!b) return "";
+  var cls = b === "NEW" ? "new" : (b === "CASHBACK" ? "cash" : (b.indexOf("PROMO") === 0 ? "promo-t" : ""));
+  return '<span class="tag ' + cls + '">' + b + "</span>";
+}
+function cardHtml(p){
+  var specs = p.specs ? '<ul class="specs">' + p.specs.map(function(s){ return "<li>" + s + "</li>"; }).join("") + "</ul>" : "";
+  var was = p.was ? '<div class="was">' + rp(p.was) + "</div>" : "";
+  var ext = IMGEXT[p.img] || "jpg";
+  return '<article class="card">' +
+    '<div class="ph"><img src="assets/produk-' + p.img + "." + ext + '" alt="Foto produk ' + p.name + '" loading="lazy" /></div>' +
+    '<div class="tags"><span class="tag">' + BRANDLABEL[p.brand] + '</span><span class="tag">' + CATLABEL[p.cat] + "</span>" + badgeHtml(p.badge) + "</div>" +
+    "<h3>" + p.name + "</h3>" +
+    (p.variant ? '<span class="variant">' + ((p.cat === "wearable" || p.cat === "aksesoris") ? "Varian: " : "RAM / Storage: ") + p.variant + "</span>" : "") +
+    specs +
+    '<div style="margin-top:auto">' + was + '<div class="price"><small>Harga katalog</small>' + rp(p.price) + "</div></div>" +
+    '<a class="order" target="_blank" rel="noopener" href="' + waLink(p) + '">💬 Pesan via WhatsApp</a>' +
+    "</article>";
+}
+
+var state = {brand:"semua", cat:"semua", q:""};
+function render(){
+  var main = document.getElementById("catalog");
+  var html = "", shown = 0;
+  SECTIONS.forEach(function(sec){
+    if(state.brand !== "semua" && state.brand !== sec.brand) return;
+    var items = PRODUCTS.filter(function(p){
+      if(p.brand !== sec.brand) return false;
+      if(state.cat !== "semua" && p.cat !== state.cat) return false;
+      if(state.q){
+        var hay = (p.name + " " + p.variant + " " + BRANDLABEL[p.brand]).toLowerCase();
+        if(hay.indexOf(state.q) === -1) return false;
+      }
+      return true;
+    });
+    if(!items.length) return;
+    shown += items.length;
+    html += '<section class="brand-sec"><div class="sec-head"><h2>' + sec.title + "</h2><p>" + sec.sub + "</p></div>" +
+      (sec.promo ? '<div class="promo">' + sec.promo + "</div>" : "") +
+      '<div class="grid">' + items.map(cardHtml).join("") + "</div></section>";
+  });
+  main.innerHTML = html;
+  document.getElementById("empty").style.display = shown ? "none" : "block";
+  document.getElementById("countLine").textContent = "Menampilkan " + shown + " dari " + PRODUCTS.length + " varian produk";
+}
+function wireChips(id, key){
+  var box = document.getElementById(id);
+  box.addEventListener("click", function(e){
+    var btn = e.target.closest("button.chip"); if(!btn) return;
+    box.querySelectorAll(".chip").forEach(function(c){ c.classList.remove("on"); });
+    btn.classList.add("on");
+    state[key] = btn.dataset.brand || btn.dataset.cat;
+    render();
+  });
+}
+wireChips("brandChips", "brand");
+wireChips("catChips", "cat");
+document.getElementById("q").addEventListener("input", function(e){
+  state.q = e.target.value.trim().toLowerCase();
+  render();
+});
+render();
+
+/* Bottom nav: Cari fokus ke kolom pencarian di header */
+document.getElementById("navSearch").addEventListener("click", function(){
+  window.scrollTo({top:0, behavior:"smooth"});
+  setTimeout(function(){ document.getElementById("q").focus({preventScroll:true}); }, 350);
+});
+
+/* Lightbox for original catalog images */
+var dlg = document.getElementById("lightbox");
+var dlgImg = document.getElementById("lightboxImg");
+document.querySelectorAll(".shot").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    dlgImg.src = btn.dataset.full;
+    if(typeof dlg.showModal === "function"){ dlg.showModal(); }
+  });
+});
+document.getElementById("lightboxClose").addEventListener("click", function(){ dlg.close(); });
+dlg.addEventListener("click", function(e){ if(e.target === dlg) dlg.close(); });
+</script>
+
+<script>
+/* PWA: daftarkan service worker (hanya jalan di hosting HTTPS / localhost) */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js").catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
